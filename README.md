@@ -9,8 +9,9 @@
 клієнт припинити користуватися сервісом.
 
 Задача належить до бінарної класифікації:
-- 0 — клієнт залишився;
-- 1 — клієнт пішов.
+
+* 0 — клієнт залишився;
+* 1 — клієнт пішов.
 
 ## Джерело даних
 
@@ -31,8 +32,8 @@ customer-churn-mlops/
 ├── notebooks/
 ├── reports/
 ├── src/
-│   ├── __init__.py
-│   ├── data_preparation.py
+│   ├── **init**.py
+│   ├── data\_preparation.py
 │   └── train.py
 ├── tests/
 ├── README.md
@@ -41,13 +42,13 @@ customer-churn-mlops/
 
 ### Призначення основних директорій
 
-- data/raw — початкові дані без змін;
-- data/processed — підготовлені дані;
-- src — код підготовки даних і навчання моделі;
-- models — збережені ML-моделі;
-- reports — метрики та результати;
-- notebooks — експерименти та первинний аналіз;
-- tests — тести.
+* data/raw — початкові дані без змін;
+* data/processed — підготовлені дані;
+* src — код підготовки даних і навчання моделі;
+* models — збережені ML-моделі;
+* reports — метрики та результати;
+* notebooks — експерименти та первинний аналіз;
+* tests — тести.
 
 ## Встановлення залежностей
 
@@ -63,6 +64,34 @@ source .venv-linux/bin/activate
 
 python -m pip install -r requirements.txt
 
+Валідація та версіонування даних
+
+Перед навчанням моделі дані перевіряються за допомогою:
+
+python src/validate\_data.py
+
+Статус passed означає, що дані успішно пройшли перевірку.
+
+Статус failed означає, що у даних знайдено помилки.
+
+Підготовлена версія датасету зберігається у:
+
+data/processed/churn\_v1.csv
+
+Метадані версії зберігаються у:
+
+data/processed/churn\_v1\_metadata.json
+
+Для навчання модель використовує версію датасету v1.
+
+Рекомендована послідовність запуску:
+
+python src/validate\_data.py
+
+python src/version\_data.py
+
+python src/train.py
+
 ## Запуск навчання
 
 python src/train.py
@@ -77,19 +106,19 @@ Logistic Regression.
 
 ## Отримані метрики
 
-- Accuracy: 0.7637
-- Precision: 0.7303
-- Recall: 0.1738
-- F1-score: 0.2808
-- ROC-AUC: 0.8195
+* Accuracy: 0.7637
+* Precision: 0.7303
+* Recall: 0.1738
+* F1-score: 0.2808
+* ROC-AUC: 0.8195
 
 Після навчання модель зберігається у:
 
-models/baseline_model.joblib
+models/baseline\_model.joblib
 
 Метрики зберігаються у:
 
-reports/baseline_metrics.json
+reports/baseline\_metrics.json
 
 ## Висновок
 
@@ -100,3 +129,4 @@ MLOps-проєкту, підготовлено дані для задачі Cust
 
 Отримана модель є baseline-моделлю та може використовуватися
 як початкова точка для подальшого покращення ML-системи.
+
