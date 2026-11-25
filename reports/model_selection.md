@@ -4,9 +4,9 @@
 
 Було порівняно два MLflow runs:
 
-\- logistic\_regression\_v1
+- logistic_regression_v1
 
-\- random\_forest\_v1
+- random_forest_v1
 
 
 
